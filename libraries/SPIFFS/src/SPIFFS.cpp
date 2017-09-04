@@ -34,7 +34,14 @@ bool SPIFFSFS::begin(bool formatOnFail, const char * basePath, uint8_t maxOpenFi
         log_w("SPIFFS Already Mounted!");
         return true;
     }
-    esp_err_t err = esp_vfs_spiffs_register(basePath, maxOpenFiles, formatOnFail);
+
+    esp_vfs_spiffs_conf_t conf = {
+      .base_path = basePath,
+      .max_files = maxOpenFiles,
+      .format_if_mount_failed = formatOnFail
+    };
+
+    esp_err_t err = esp_vfs_spiffs_register(&conf);
     if(err){
         log_e("Mounting SPIFFS failed! Error: %d", err);
         return false;
