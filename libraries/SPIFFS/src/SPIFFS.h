@@ -28,6 +28,8 @@ public:
     size_t totalBytes();
     size_t usedBytes();
     void end();
+    bool exists(const char* path);
+    bool exists(const String& path);
 };
 
 }
