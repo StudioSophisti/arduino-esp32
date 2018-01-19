@@ -24,7 +24,7 @@ else:
 if 'Windows' in platform.system():
     import requests
 
-current_dir = os.path.dirname(os.path.realpath(__file__))
+current_dir = os.path.dirname(os.path.realpath(unicode(__file__)))
 dist_dir = current_dir + '/dist/'
 
 def sha256sum(filename, blocksize=65536):
@@ -80,6 +80,7 @@ def get_tool(tool):
         print('Downloading ' + archive_name);
         sys.stdout.flush()
         if 'CYGWIN_NT' in sys_name:
+            import ssl
             ctx = ssl.create_default_context()
             ctx.check_hostname = False
             ctx.verify_mode = ssl.CERT_NONE
