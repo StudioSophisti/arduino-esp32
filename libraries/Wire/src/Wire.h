@@ -131,6 +131,7 @@ public:
 
     void dumpInts();
     void dumpI2C();
+    void end();
 };
 
 extern TwoWire Wire;
